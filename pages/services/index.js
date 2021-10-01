@@ -6,6 +6,7 @@ import 'swiper/css';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import { useRouter } from 'next/router'
+import { getUrl } from '../../services/getUrl';
 
 SwiperCore.use([Navigation, Pagination, Autoplay]);
 
@@ -15,25 +16,25 @@ export async function getStaticProps(context) {
 
   let page;
   if (locale === undefined) {
-    page = await fetch(`http://localhost:1337/paslaugos`);
+    page = await fetch(`${getUrl()}/paslaugos`);
   } else {
-    page = await fetch(`http://localhost:1337/paslaugos?_locale=${locale}`);
+    page = await fetch(`${getUrl()}/paslaugos?_locale=${locale}`);
   }
   const pageData = await page.json();
 
   let header;
   if (locale === undefined) {
-    header = await fetch(`http://localhost:1337/header`);
+    header = await fetch(`${getUrl()}/header`);
   } else {
-    header = await fetch(`http://localhost:1337/header?_locale=${locale}`);
+    header = await fetch(`${getUrl()}/header?_locale=${locale}`);
   }
   const headerData = await header.json();
 
   let footer;
   if (locale === undefined) {
-    footer = await fetch(`http://localhost:1337/footer`);
+    footer = await fetch(`${getUrl()}/footer`);
   } else {
-    footer = await fetch(`http://localhost:1337/footer?_locale=${locale}`);
+    footer = await fetch(`${getUrl()}/footer?_locale=${locale}`);
   }
   const footerData = await footer.json();
 
