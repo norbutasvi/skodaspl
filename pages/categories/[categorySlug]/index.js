@@ -4,6 +4,7 @@ import Header from '../../../components/Header';
 import Footer from '../../../components/Footer';
 import Link from 'next/link';
 import { useRouter } from 'next/router'
+import { getUrl } from '../../../services/getUrl';
 
 export async function getStaticProps(context) {
 
@@ -11,9 +12,9 @@ export async function getStaticProps(context) {
 
   let products;
   if (locale === undefined) {
-    products = await fetch(`http://localhost:1337/categories?slug=${params.categorySlug}`);
+    products = await fetch(`${getUrl()}/categories?slug=${params.categorySlug}`);
   } else {
-    products = await fetch(`http://localhost:1337/categories?_locale=${locale}&slug=${params.categorySlug}`);
+    products = await fetch(`${getUrl()}/categories?_locale=${locale}&slug=${params.categorySlug}`);
   }
   const productsData = await products.json();
 
@@ -22,7 +23,7 @@ export async function getStaticProps(context) {
     const otherLocales = productsData[0].localizations;
 
     otherLocales.forEach(async (locale) => {
-      const category = await fetch(`http://localhost:1337/categories/${locale._id}`);
+      const category = await fetch(`${getUrl()}/categories/${locale._id}`);
       let categoryData = await category.json();
       array.push(categoryData);
     })
@@ -34,25 +35,25 @@ export async function getStaticProps(context) {
 
   let categories;
   if (locale === undefined) {
-    categories = await fetch(`http://localhost:1337/categories`);
+    categories = await fetch(`${getUrl()}/categories`);
   } else {
-    categories = await fetch(`http://localhost:1337/categories?_locale=${locale}`);
+    categories = await fetch(`${getUrl()}/categories?_locale=${locale}`);
   }
   const categoriesData = await categories.json();
 
   let header;
   if (locale === undefined) {
-    header = await fetch(`http://localhost:1337/header`);
+    header = await fetch(`${getUrl()}/header`);
   } else {
-    header = await fetch(`http://localhost:1337/header?_locale=${locale}`);
+    header = await fetch(`${getUrl()}/header?_locale=${locale}`);
   }
   const headerData = await header.json();
 
   let footer;
   if (locale === undefined) {
-    footer = await fetch(`http://localhost:1337/footer`);
+    footer = await fetch(`${getUrl()}/footer`);
   } else {
-    footer = await fetch(`http://localhost:1337/footer?_locale=${locale}`);
+    footer = await fetch(`${getUrl()}/footer?_locale=${locale}`);
   }
   const footerData = await footer.json();
 
@@ -79,13 +80,13 @@ export async function getStaticProps(context) {
   // This function gets called at build time
   export async function getStaticPaths({ locales }) {
     // Call an external API endpoint to get posts
-    const res = await fetch(`http://localhost:1337/categories`)
+    const res = await fetch(`${getUrl()}/categories`)
     const posts = await res.json()
   
-    const enres = await fetch(`http://localhost:1337/categories?_locale=en`)
+    const enres = await fetch(`${getUrl()}/categories?_locale=en`)
     const enposts = await enres.json()
   
-    const rures = await fetch(`http://localhost:1337/categories?_locale=ru`)
+    const rures = await fetch(`${getUrl()}/categories?_locale=ru`)
     const ruposts = await rures.json()
   
     const array = posts.concat(enposts, ruposts);

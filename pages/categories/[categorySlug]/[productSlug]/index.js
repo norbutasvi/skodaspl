@@ -5,6 +5,7 @@ import Header from '../../../../components/Header';
 import { useRouter } from 'next/router'
 import Footer from '../../../../components/Footer';
 import marked from 'marked';
+import { getUrl } from '../../../../services/getUrl';
 
 export async function getStaticProps(context) {
 
@@ -12,9 +13,9 @@ export async function getStaticProps(context) {
 
   let product;
   if (locale === undefined) {
-    product = await fetch(`http://localhost:1337/products?slug=${params.productSlug}`);
+    product = await fetch(`${getUrl()}/products?slug=${params.productSlug}`);
   } else {
-    product = await fetch(`http://localhost:1337/products?_locale=${locale}&slug=${params.productSlug}`);
+    product = await fetch(`${getUrl()}/products?_locale=${locale}&slug=${params.productSlug}`);
   }
   const productData = await product.json();
 
@@ -23,7 +24,7 @@ export async function getStaticProps(context) {
     const otherLocales = productData[0].localizations;
 
     otherLocales.forEach(async (locale) => {
-      const category = await fetch(`http://localhost:1337/products/${locale._id}`);
+      const category = await fetch(`${getUrl()}/products/${locale._id}`);
       let categoryData = await category.json();
       array.push(categoryData);
     })
@@ -32,17 +33,17 @@ export async function getStaticProps(context) {
 
   let header;
   if (locale === undefined) {
-    header = await fetch(`http://localhost:1337/header`);
+    header = await fetch(`${getUrl()}/header`);
   } else {
-    header = await fetch(`http://localhost:1337/header?_locale=${locale}`);
+    header = await fetch(`${getUrl()}/header?_locale=${locale}`);
   }
   const headerData = await header.json();
 
   let footer;
   if (locale === undefined) {
-    footer = await fetch(`http://localhost:1337/footer`);
+    footer = await fetch(`${getUrl()}/footer`);
   } else {
-    footer = await fetch(`http://localhost:1337/footer?_locale=${locale}`);
+    footer = await fetch(`${getUrl()}/footer?_locale=${locale}`);
   }
   const footerData = await footer.json();
 
@@ -67,13 +68,13 @@ export async function getStaticProps(context) {
   // This function gets called at build time
   export async function getStaticPaths({ locales }) {
     // Call an external API endpoint to get posts
-    const res = await fetch(`http://localhost:1337/products`)
+    const res = await fetch(`${getUrl()}/products`)
     const posts = await res.json()
   
-    const enres = await fetch(`http://localhost:1337/products?_locale=en`)
+    const enres = await fetch(`${getUrl()}/products?_locale=en`)
     const enposts = await enres.json()
   
-    const rures = await fetch(`http://localhost:1337/products?_locale=ru`)
+    const rures = await fetch(`${getUrl()}/products?_locale=ru`)
     const ruposts = await rures.json()
   
     const array = posts.concat(enposts, ruposts);

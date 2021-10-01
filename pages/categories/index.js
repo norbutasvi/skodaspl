@@ -4,6 +4,7 @@ import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import Link from 'next/link';
 import { useRouter } from 'next/router'
+import { getUrl } from '../../services/getUrl';
 
 export async function getStaticProps(context) {
 
@@ -11,25 +12,25 @@ export async function getStaticProps(context) {
 
   let categories;
   if (locale === undefined) {
-    categories = await fetch(`http://localhost:1337/categories`);
+    categories = await fetch(`${getUrl()}/categories`);
   } else {
-    categories = await fetch(`http://localhost:1337/categories?_locale=${locale}`);
+    categories = await fetch(`${getUrl()}/categories?_locale=${locale}`);
   }
   const categoriesData = await categories.json();
 
   let header;
   if (locale === undefined) {
-    header = await fetch(`http://localhost:1337/header`);
+    header = await fetch(`${getUrl()}/header`);
   } else {
-    header = await fetch(`http://localhost:1337/header?_locale=${locale}`);
+    header = await fetch(`${getUrl()}/header?_locale=${locale}`);
   }
   const headerData = await header.json();
 
   let footer;
   if (locale === undefined) {
-    footer = await fetch(`http://localhost:1337/footer`);
+    footer = await fetch(`${getUrl()}/footer`);
   } else {
-    footer = await fetch(`http://localhost:1337/footer?_locale=${locale}`);
+    footer = await fetch(`${getUrl()}/footer?_locale=${locale}`);
   }
   const footerData = await footer.json();
 
