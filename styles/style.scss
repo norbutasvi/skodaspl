@@ -1,0 +1,619 @@
+$green: #A4CC45;
+$darkGreen: #385000;
+
+@mixin phone {
+    @media only screen and (max-width: 700px) {
+        @content;
+    }
+}
+
+@mixin miniDesktop {
+    @media only screen and (max-width: 1200px) {
+        @content;
+    }
+}
+
+body {
+    margin: 0;
+    font-family: 'Rajdhani', sans-serif;
+
+    @include phone {
+        font-size: 80%;
+    }
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.wrapper {
+    width: 80%;
+    margin: 0 auto;
+    max-width: 1270px;
+}
+
+p {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    .menu-button {
+        display: none;
+        background: black;
+        width: 100%;
+        text-align: center;
+
+        img {
+            height: 40px;
+        }
+
+        @include phone {
+            display: block;
+        }
+    }
+    .contacts {
+        padding: 10px 0px;
+        border-bottom: 1px solid rgb(204, 204, 204);
+        font-size: 14px;
+
+        .wrapper {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            
+            @include phone {
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            .item {
+                margin-left: 10px;
+                display: flex;
+                align-items: center;
+
+                img {
+                    margin-right: 5px;
+                    width: 16px;
+                }
+
+                a {
+                    .flag {
+                        height: 14px;
+                        width: auto;
+                    }
+                }
+            }
+
+            .flags {
+                margin-left: 20px;
+            }
+        }
+    }
+
+    .flex {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 50px 0px;
+        align-items: center;
+        
+        @include phone() {
+            flex-direction: column;
+            width: 100%;
+            padding: 0px;
+        }
+
+        .logo {
+            cursor: pointer;
+
+            img {
+                width: 250px;
+            }
+        }
+
+        .desktop {
+            display: block;
+            
+            @include phone {
+                display: none;
+            }
+        }
+
+        .navigation {
+            overflow: hidden;
+
+            @include phone {
+                width: 100%;
+            }
+
+            ul {
+                display: flex;
+                align-items: center;
+
+                @include phone {
+                    flex-direction: column;
+                }
+
+                a {
+                    @include phone {
+                        width: 100%;
+                        text-align: center;
+                        color: white;
+                        background: black;
+                    }
+                }
+
+                li {
+                    margin-left: 10px;
+                    padding: 10px 20px;
+                    font-weight: 500;
+                    border-bottom: 2px solid $green;
+                    font-size: 18px;
+                    background: rgba(164, 204, 69, 0);
+                    transition: 0.3s ease-in-out;
+
+                    @include phone {
+                        margin: 0;
+                    }
+
+                    &:hover {
+                        background: rgba(164, 204, 69, 1);
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.slide-item {
+    height: 400px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+
+    @include phone {
+        height: 30vh;
+    }
+}
+
+.about-content {
+    padding: 50px 0px;
+
+    .wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        @include phone {
+            flex-direction: column;
+        }
+        
+        .image {
+            width: 30%;
+
+            @include phone {
+                width: 100%;
+            }
+
+            img {
+                width: 100%;
+            }
+        }
+
+        .text {
+            width: 65%;
+            text-align: justify;
+
+            @include phone {
+                width: 100%;
+            }
+        }
+    }
+}
+
+footer {
+    background: black;;
+    color: white;
+
+    .arrow-icon {
+        height: 20px;
+    }
+
+    .wrapper {
+        display: flex;
+        justify-content: space-between;
+        padding: 50px 0px;
+
+        @include phone {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .col {
+            width: 30%;
+
+            @include phone {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+
+            .bolded {
+                font-weight: 700;
+            }
+
+            p {
+                margin-bottom: 5px;
+            }
+
+            ul {
+
+                a {
+                    color: white;
+
+                    li {
+                        display: flex;
+                        align-items: center;
+                        padding: 7px 0px;
+                        cursor: pointer;
+                        opacity: 0.6;
+                        transition: 0.5s ease-in-out;
+                        border-bottom: 1px solid $green !important;
+
+                        @include phone {
+                            opacity: 1;
+                        }
+    
+                        &:hover {
+                            text-shadow: 2px 2px 5px #CECECE;
+                            opacity: 1;
+                        }
+    
+                        img {
+                            margin-right: 5px;
+                        }
+
+                        &:last-child {
+                            border: none;
+                        }
+                    }
+                }
+            }
+        }
+
+        .logo {
+            img {
+                margin-bottom: 10px;
+                width: 220px;
+            }
+        }
+    }
+
+    .copyright {
+        text-align: center;
+        padding: 7px 0px;
+        font-size: 12px;
+        border-top: 1px solid grey;
+
+        a {
+            color: white;
+        }
+    }
+}
+
+.categories-content {
+    .wrapper {
+        display: flex;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        padding: 0px 0px 50px 0px;
+
+        @include phone {
+            padding: 40px 0px;
+        }
+
+        a {
+            width: calc(33.33% - 20px);
+            margin: 10px;
+
+            @include phone {
+                width: 100%;
+            }
+            .item {
+                width: 100%;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+                height: 300px;
+                position: relative;
+                cursor: pointer;
+
+                @include miniDesktop() {
+                    height: 250px;
+                }
+
+                @include phone {
+                    margin: 0;
+                }
+    
+                h1 {
+                    margin: 0;
+                    padding: 10px;
+                    color: white;
+                    font-weight: 500;
+                    position: absolute;
+                    top: 0;
+                    width: 100%;
+                    text-align: center;
+                    background-color:rgba(164, 204, 69, 0.7);
+                }
+            }
+        }
+    }
+}
+
+.products-content {
+
+    .title {
+        text-align: center;
+    }
+
+    .description {
+        background: $green;
+        color: white;
+        padding: 20px;
+        font-weight: 500;
+
+        @include phone {
+            text-align: center;
+        }
+    }
+    
+    .wrapper {
+        display: flex;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        padding: 0px 0px 50px 0px;
+
+        a {
+            width: calc(33.33% - 20px);
+            margin: 10px;
+
+            @include phone {
+                width: 100%;
+            }
+
+            .item {
+                width: 100%;
+                height: 400px;
+                cursor: pointer;
+                -webkit-box-shadow: 0px 0px 22px -8px #000000; 
+                box-shadow: 0px 0px 22px -8px #000000;
+    
+                @include miniDesktop() {
+                    width: calc(50% - 20px);
+                }
+
+                @include phone() {
+                    width: 100%;
+                    margin: 0;
+                }
+    
+                .background {
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                    background-position: center;
+                    height: 60%;
+                }
+    
+                h2 {
+                    margin: 0;
+                }
+    
+                .model {
+                    height: 20%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    background: $green;
+                    color: white;
+                    text-shadow: 0px 0px 6px rgba(0,0,0,0.74);
+                }
+    
+                .description {
+                    height: 20%;
+                    color: white;
+                    text-align: center;
+                    padding: 10px;
+                    background: $green;
+                    border-top: 1px solid white;
+                }
+            
+        }
+        }
+}
+}
+
+.product {
+    .texture {
+        .wrapper {
+            align-items: center;
+
+            .icon {
+             height: 50px;
+             width: auto;
+             margin-right: 10px;
+            }
+
+            .category-title {
+                font-size: 25px;
+                border-bottom: 10px solid $green;
+            }
+
+            img {
+                width: 300px;
+            }
+        }
+    }
+
+    .wrapper {
+        display: flex;
+        padding: 0 0 50px 0px;
+        position: relative;
+        align-items: flex-start;
+
+        @include phone {
+            padding: 20px 0px;
+            flex-direction: column-reverse;
+        }
+
+        .text {
+            width: 50%;
+            padding-right: 20px;
+
+            @include phone {
+                width: 100%;
+                padding: 0px;
+            }
+
+            h2 {
+                margin: 0px 0px 20px 0px;
+                color: $darkGreen;
+            }
+        }
+
+        .gallery {
+            width: 50%;
+            padding-left: 20px;
+            position: sticky;
+            top: 20px;
+
+            @include phone {
+                width: 100%;
+                padding: 0px;
+                position: relative;
+                top: 0px;
+                margin-bottom: 20px;
+            };
+
+            .main-image {
+                position: relative;
+
+                img {
+                    width: 100%;
+                    height: auto;
+                }
+
+                .zoom-in {
+                    position: absolute;
+                    padding: 10px;
+                    width: 50px;
+                    pointer-events: none;
+                    background: white;
+                    margin: 5px;
+                    border-radius: 5px;
+                }
+            }
+
+            .image-list {
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                flex-wrap: wrap;
+
+                a {
+                    padding-right: 5px;
+                    width: 20%;
+                    height: 20%;
+
+                    @include phone {
+                        width: 33.3%;
+                    }
+
+                    img {
+                        width: 100%;
+                        height: 100px;
+                        object-fit: cover;
+                        opacity: 0.7;
+                        transition: 0.3s ease-in-out;
+
+                        &:hover {
+                            opacity: 1;
+                        }
+                    }
+
+                    &:last-child {
+                        padding-right: 0px;
+                    }
+                }
+            
+            }
+        }
+    }
+}
+
+.paragraph {
+    padding-right: 20px;
+
+    ul {
+        list-style: inside !important;
+    }
+
+    @include phone {
+        padding: 0;
+    }
+
+    figure {
+        @include phone {
+            margin: 20px 0px;
+        }
+    }
+
+    img {
+        max-width: 100%;
+
+        @include phone {
+            width: 100%;
+        }
+    }
+
+    .image {
+        text-align: center;
+    }
+
+    table, td, th {
+        border: 1px solid black;
+      }
+
+      td, th {
+          padding: 8px;
+      }
+      
+      table {
+        border-collapse: collapse;
+        margin: 0 auto !important;
+        text-align: center;
+      }
+
+      a {
+          color: blue;
+      }
+}
+
+.services-content {
+    h1 {
+        text-align: center;
+    }
+}
