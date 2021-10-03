@@ -118,7 +118,7 @@ function Index({ product, header, footer, locale, array}) {
                 {
                   product[0].files.map(file =>
                     <div key={file._id} className="pdf-list">
-                      <a href={`${file.link}`} target="_blank">
+                      <a href={`${file.link}`} rel="noopener noreferrer" target="_blank">
                       <img src="https://res.cloudinary.com/skodas-lt/image/upload/v1633202270/51955_document_file_pdf_icon_xohnmw.png" />
                       <p>{file.title}</p>
                       </a>
