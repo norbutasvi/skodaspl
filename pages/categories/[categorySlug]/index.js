@@ -80,28 +80,32 @@ export async function getStaticProps(context) {
   // This function gets called at build time
   export async function getStaticPaths({ locales }) {
     // Call an external API endpoint to get posts
-    const res = await fetch(`${getUrl()}/categories`)
+    const res = await fetch(`${getUrl()}/categories?_locale=all`)
     const posts = await res.json()
+
+    const paths = posts.map((post) => ({
+      params: { categorySlug: post.slug },
+    }))
   
-    const enres = await fetch(`${getUrl()}/categories?_locale=en`)
-    const enposts = await enres.json()
+    // const enres = await fetch(`${getUrl()}/categories?_locale=en`)
+    // const enposts = await enres.json()
   
-    const rures = await fetch(`${getUrl()}/categories?_locale=ru`)
-    const ruposts = await rures.json()
+    // const rures = await fetch(`${getUrl()}/categories?_locale=ru`)
+    // const ruposts = await rures.json()
   
-    const array = posts.concat(enposts, ruposts);
+    // const array = posts.concat(enposts, ruposts);
   
-    const paths = [];
-    array.forEach((post) => {
-        for (const locale of locales) {
-           paths.push({
-              params: {
-                 categorySlug: post.slug
-              },
-              locale,
-           });
-        }
-     });
+    // const paths = [];
+    // array.forEach((post) => {
+    //     for (const locale of locales) {
+    //        paths.push({
+    //           params: {
+    //              categorySlug: post.slug
+    //           },
+    //           locale,
+    //        });
+    //     }
+    //  });
   
     return {
         paths,
@@ -128,7 +132,8 @@ function Index({ header, footer, locale, category, productsData, array}) {
       <Header header={header} locale={locale} asPath={router.asPath} type="category" otherLocales={array}/>
         <div className="products-content">
           <h1 className="title">{category.title}</h1>
-          <div className="wrapper">
+          <div className="flex">
+            <img src="https://res.cloudinary.com/skodas-lt/image/upload/v1633275407/372889_description_full_info_information_read_icon_1_hyoitn.svg" />
             <div className="description" dangerouslySetInnerHTML={{ __html: category.description }}/>
           </div>
             <div className="wrapper">

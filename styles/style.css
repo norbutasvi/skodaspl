@@ -5,7 +5,7 @@ body {
 
 @media only screen and (max-width: 700px) {
   body {
-    font-size: 80%;
+    font-size: 90%;
   }
 }
 
@@ -129,6 +129,17 @@ ul {
   }
 }
 
+@media only screen and (max-width: 1024px) {
+  .header .flex {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    width: 100%;
+    padding: 0px;
+  }
+}
+
 .header .flex .logo {
   cursor: pointer;
 }
@@ -223,50 +234,9 @@ ul {
   padding: 50px 0px;
 }
 
-.about-content .wrapper {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-}
-
-@media only screen and (max-width: 700px) {
-  .about-content .wrapper {
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-  }
-}
-
-.about-content .wrapper .image {
-  width: 30%;
-}
-
-@media only screen and (max-width: 700px) {
-  .about-content .wrapper .image {
-    width: 100%;
-  }
-}
-
-.about-content .wrapper .image img {
-  width: 100%;
-}
-
 .about-content .wrapper .text {
-  width: 65%;
+  width: 100%;
   text-align: justify;
-}
-
-@media only screen and (max-width: 700px) {
-  .about-content .wrapper .text {
-    width: 100%;
-  }
 }
 
 footer {
@@ -440,6 +410,25 @@ footer .copyright a {
   text-align: center;
 }
 
+.products-content .flex {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: #A4CC45;
+  margin: 0 auto;
+  width: 80%;
+  max-width: 1270px;
+  margin-bottom: 30px;
+}
+
+.products-content .flex img {
+  width: 50px;
+  margin-left: 20px;
+}
+
 .products-content .description {
   background: #A4CC45;
   color: white;
@@ -577,7 +566,8 @@ footer .copyright a {
 
 .product .wrapper .text {
   width: 50%;
-  padding-right: 20px;
+  padding: 20px;
+  color: black;
 }
 
 @media only screen and (max-width: 700px) {
@@ -587,9 +577,29 @@ footer .copyright a {
   }
 }
 
+.product .wrapper .text .pdf-list a {
+  padding: 5px;
+  background: #444D31;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: white;
+  margin-top: 20px;
+  font-size: 13px;
+  margin-top: 5px;
+}
+
+.product .wrapper .text .pdf-list a img {
+  margin-right: 5px;
+  height: 30px;
+}
+
 .product .wrapper .text h2 {
   margin: 0px 0px 20px 0px;
-  color: #385000;
+  color: #444D31;
 }
 
 .product .wrapper .gallery {
@@ -725,7 +735,57 @@ footer .copyright a {
   color: blue;
 }
 
-.services-content h1 {
+.services-content h1, .partners-content h1 {
   text-align: center;
+}
+
+.services-content .wrapper, .partners-content .wrapper {
+  padding: 30px 0px;
+}
+
+.partners-content .wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding-bottom: 20px;
+}
+
+@media only screen and (max-width: 700px) {
+  .partners-content .wrapper {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+
+.partners-content .wrapper .image {
+  width: 45%;
+}
+
+@media only screen and (max-width: 700px) {
+  .partners-content .wrapper .image {
+    width: 100%;
+  }
+}
+
+.partners-content .wrapper .image img {
+  width: 100%;
+}
+
+.partners-content .wrapper .paragraph {
+  width: 45%;
+}
+
+@media only screen and (max-width: 700px) {
+  .partners-content .wrapper .paragraph {
+    width: 100%;
+  }
 }
 /*# sourceMappingURL=style.css.map */

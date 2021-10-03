@@ -68,29 +68,13 @@ export async function getStaticProps(context) {
   // This function gets called at build time
   export async function getStaticPaths({ locales }) {
     // Call an external API endpoint to get posts
-    const res = await fetch(`${getUrl()}/products`)
+    const res = await fetch(`${getUrl()}/products?_locale=all`)
     const posts = await res.json()
+
+    const paths = posts.map((post) => ({
+      params: { categorySlug: post.category.slug, productSlug: post.slug},
+    }))
   
-    const enres = await fetch(`${getUrl()}/products?_locale=en`)
-    const enposts = await enres.json()
-  
-    const rures = await fetch(`${getUrl()}/products?_locale=ru`)
-    const ruposts = await rures.json()
-  
-    const array = posts.concat(enposts, ruposts);
-  
-    const paths = [];
-    array.forEach((post) => {
-        for (const locale of locales) {
-           paths.push({
-              params: {
-                categorySlug: post.category.slug,
-                productSlug: post.slug
-              },
-              locale,
-           });
-        }
-     });
   
     return {
         paths,
@@ -131,6 +115,16 @@ function Index({ product, header, footer, locale, array}) {
                 <div className="text">
                 <h2 className="model-title">{product[0].title}</h2>
                 <div className="paragraph" dangerouslySetInnerHTML={{ __html: product[0].description }} />
+                {
+                  product[0].files.map(file =>
+                    <div key={file._id} className="pdf-list">
+                      <a href={`${file.link}`} target="_blank">
+                      <img src="https://res.cloudinary.com/skodas-lt/image/upload/v1633202270/51955_document_file_pdf_icon_xohnmw.png" />
+                      <p>{file.title}</p>
+                      </a>
+                  </div>
+                    )
+                }
                 </div>
                 <div className="gallery">
                     <SRLWrapper>

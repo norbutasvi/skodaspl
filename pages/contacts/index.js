@@ -1,12 +1,10 @@
 import Head from 'next/head'
-import Link from 'next/link';
-import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, {Navigation, Pagination, Autoplay} from 'swiper';
 import 'swiper/css';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
+import Header from '../../components/Header';
+import Footer from '../../components/Footer';
 import { useRouter } from 'next/router'
-import { getUrl } from '../services/getUrl';
+import { getUrl } from '../../services/getUrl';
 
 SwiperCore.use([Navigation, Pagination, Autoplay]);
 
@@ -16,9 +14,9 @@ export async function getStaticProps(context) {
 
   let page;
   if (locale === undefined) {
-    page = await fetch(`${getUrl()}/pagrindinis`);
+    page = await fetch(`${getUrl()}/kontaktai`);
   } else {
-    page = await fetch(`${getUrl()}/pagrindinis?_locale=${locale}`);
+    page = await fetch(`${getUrl()}/kontaktai?_locale=${locale}`);
   }
   const pageData = await page.json();
 
@@ -48,9 +46,10 @@ export async function getStaticProps(context) {
   }
 }
 
-export default function Home({ page, header, footer, locale}) {
+export default function Index({ page, header, footer, locale}) {
 
   const router = useRouter()
+  console.log(page);
 
   return (
     <div>
@@ -64,32 +63,11 @@ export default function Home({ page, header, footer, locale}) {
       </Head>
 
       <main>
-        <Header header={header} locale={locale} asPath={router.asPath} type={`home`}/>
-        <Swiper
-            // spaceBetween={50}
-            // modules={[Navigation, Pagination]}
-            slidesPerView={1}
-            onSwiper={(swiper) => console.log(swiper)}
-            navigation
-            pagination={{ clickable: true }}
-            autoplay
-          >
-            {
-              page.Slideshow.images.map(image =>
-                <SwiperSlide key={image._id}>
-                  <div className="slide-item" style={{ backgroundImage: `url('${image.url}')`}}>
-                    
-                  </div>
-                </SwiperSlide>
-                )
-            }
-          </Swiper>
-          <div className="about-content">
+        <Header header={header} locale={locale} asPath={router.asPath} type="services"/>
+          <div className="services-content">
+            <h1>{page.title}</h1>
             <div className="wrapper">
-              <div className="text">
-                <h2>{page.title}</h2>
-                <div className="paragraph" dangerouslySetInnerHTML={{ __html: page.content }} />
-              </div>
+              <div className="paragraph" dangerouslySetInnerHTML={{ __html: page.content }} />
             </div>
           </div>
       </main>

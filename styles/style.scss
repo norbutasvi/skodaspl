@@ -1,8 +1,14 @@
 $green: #A4CC45;
-$darkGreen: #385000;
+$darkGreen: #444D31;
 
 @mixin phone {
     @media only screen and (max-width: 700px) {
+        @content;
+    }
+}
+
+@mixin tablet {
+    @media only screen and (max-width: 1024px) {
         @content;
     }
 }
@@ -18,7 +24,7 @@ body {
     font-family: 'Rajdhani', sans-serif;
 
     @include phone {
-        font-size: 80%;
+        font-size: 90%;
     }
 }
 
@@ -115,6 +121,12 @@ ul {
             padding: 0px;
         }
 
+        @include tablet() {
+            flex-direction: column;
+            width: 100%;
+            padding: 0px;
+        }
+
         .logo {
             cursor: pointer;
 
@@ -193,33 +205,13 @@ ul {
     padding: 50px 0px;
 
     .wrapper {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-
-        @include phone {
-            flex-direction: column;
-        }
         
         .image {
-            width: 30%;
-
-            @include phone {
-                width: 100%;
-            }
-
-            img {
-                width: 100%;
-            }
         }
 
         .text {
-            width: 65%;
+            width: 100%;
             text-align: justify;
-
-            @include phone {
-                width: 100%;
-            }
         }
     }
 }
@@ -370,11 +362,27 @@ footer {
         text-align: center;
     }
 
+    .flex {
+        display: flex;
+        align-items: center;
+        background: $green;
+        margin: 0 auto;
+        width: 80%;
+        max-width: 1270px;
+        margin-bottom: 30px;
+
+        img {
+            width: 50px;
+            margin-left: 20px;
+        }
+    }
+
     .description {
         background: $green;
         color: white;
         padding: 20px;
         font-weight: 500;
+        // width: 60%;
 
         @include phone {
             text-align: center;
@@ -481,11 +489,30 @@ footer {
 
         .text {
             width: 50%;
-            padding-right: 20px;
+            padding: 20px;
+            color: black;
 
             @include phone {
                 width: 100%;
                 padding: 0px;
+            }
+
+            .pdf-list {
+                a {
+                    padding: 5px;
+                    background: $darkGreen;
+                    display: flex;
+                    align-items: center;
+                    color: white;
+                    margin-top: 20px;
+                    font-size: 13px;
+                    margin-top: 5px;
+    
+                    img {
+                        margin-right: 5px;
+                        height: 30px;
+                    }
+                }
             }
 
             h2 {
@@ -612,8 +639,45 @@ footer {
       }
 }
 
-.services-content {
+.services-content, .partners-content {
     h1 {
         text-align: center;
+    }
+
+    .wrapper {
+        padding: 30px 0px;
+    }
+}
+
+.partners-content {
+    .wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-bottom: 20px;
+
+        @include phone {
+            flex-direction: column;
+        }
+
+        .image {
+            width: 45%;
+
+            @include phone {
+                width: 100%;
+            }
+            
+            img {
+                width: 100%;
+            }
+        }
+
+        .paragraph {
+            width: 45%;
+
+            @include phone {
+                width: 100%;
+            }
+        }
     }
 }

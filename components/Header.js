@@ -116,7 +116,12 @@ function Header({ header, locale, asPath, type, otherLocales }) {
                       <li>{header.paslaugos}</li>
                   </a>
                   </Link>
-                  <Link href="/contact" locale={locale}>
+                  <Link href="/partners" locale={locale}>
+                  <a>
+                      <li>{header.partneriai}</li>
+                  </a>
+                  </Link>
+                  <Link href="/contacts" locale={locale}>
                   <a>
                       <li>{header.kontaktai}</li>
                   </a>
@@ -149,7 +154,12 @@ function Header({ header, locale, asPath, type, otherLocales }) {
                       <li>{header.paslaugos}</li>
                   </a>
                   </Link>
-                  <Link href="/contact" locale={locale}>
+                  <Link href="/partners" locale={locale}>
+                  <a>
+                      <li>{header.partneriai}</li>
+                  </a>
+                  </Link>
+                  <Link href="/contacts" locale={locale}>
                   <a>
                       <li>{header.kontaktai}</li>
                   </a>
