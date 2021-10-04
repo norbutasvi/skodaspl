@@ -21,7 +21,8 @@ $darkGreen: #444D31;
 
 body {
     margin: 0;
-    font-family: 'Rajdhani', sans-serif;
+    // font-family: 'Rajdhani', sans-serif;
+    font-family: 'Roboto Condensed', sans-serif;
 
     @include phone {
         font-size: 90%;
