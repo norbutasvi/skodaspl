@@ -44,7 +44,8 @@ export async function getStaticProps(context) {
       header: headerData,
       footer: footerData,
       locale
-    }
+    },
+    revalidate: 10
   }
 }
 
