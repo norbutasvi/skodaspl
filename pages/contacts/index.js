@@ -50,7 +50,6 @@ export async function getStaticProps(context) {
 export default function Index({ page, header, footer, locale}) {
 
   const router = useRouter()
-  console.log(page);
 
   return (
     <div>
