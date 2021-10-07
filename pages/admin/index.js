@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 
-function index() {
+function Index() {
 
     useEffect(() => {
         window.location.assign('https://skodas-admin.herokuapp.com/admin');
@@ -13,4 +13,4 @@ function index() {
     )
 }
 
-export default index
+export default Index
