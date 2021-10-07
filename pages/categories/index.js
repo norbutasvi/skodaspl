@@ -41,7 +41,7 @@ export async function getStaticProps(context) {
       footer: footerData,
       locale
     },
-    revalidate: 10
+    revalidate: 1
   }
 }
 

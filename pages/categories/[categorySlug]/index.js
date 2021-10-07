@@ -73,7 +73,7 @@ export async function getStaticProps(context) {
       productsData,
       array
     },
-    revalidate: 10
+    revalidate: 1
   }
 }
 
