@@ -73,7 +73,7 @@ export async function getStaticProps(context) {
       productsData,
       array
     },
-    revalidate: 5
+    revalidate: 2
   }
 }
 
@@ -108,7 +108,7 @@ export async function getStaticProps(context) {
     //  });
   
     return {
-        fallback: true,
+        fallback: 'blocking',
         paths,
      };
   }
