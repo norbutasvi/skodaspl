@@ -61,7 +61,7 @@ export async function getStaticProps(context) {
       locale,
       array
     },
-    revalidate: 10
+    revalidate: 2
   }
 }
 
@@ -77,8 +77,8 @@ export async function getStaticProps(context) {
   
   
     return {
+        fallback: false,
         paths,
-        fallback: 'blocking',
      };
   }
 
