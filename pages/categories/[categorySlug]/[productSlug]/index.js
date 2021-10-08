@@ -77,7 +77,7 @@ export async function getStaticProps(context) {
   
   
     return {
-        fallback: false,
+        fallback: true,
         paths,
      };
   }
@@ -90,6 +90,13 @@ function Index({ product, header, footer, locale, array}) {
   const otherImages = product[0].images.filter(image => image._id !== mainImage._id);
 
   // product[0].images.shift();
+
+  const router = useRouter()
+
+  // test 
+  if (router.isFallback) {
+    return <div>Loading...</div>
+  }
 
     return (
         <div>
