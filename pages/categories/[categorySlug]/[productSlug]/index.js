@@ -91,8 +91,6 @@ function Index({ product, header, footer, locale, array}) {
 
   // product[0].images.shift();
 
-  const router = useRouter()
-
   // test 
   if (router.isFallback) {
     return <div>Loading...</div>
