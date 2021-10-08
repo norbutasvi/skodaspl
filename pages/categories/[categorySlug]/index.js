@@ -118,6 +118,7 @@ function Index({ header, footer, locale, category, productsData, array}) {
 
   const router = useRouter()
 
+  // test 
   if (router.isFallback) {
     return <div>Loading...</div>
   }
