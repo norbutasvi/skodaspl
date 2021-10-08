@@ -108,7 +108,7 @@ export async function getStaticProps(context) {
     //  });
   
     return {
-        fallback: 'blocking',
+        fallback: false,
         paths,
      };
   }
