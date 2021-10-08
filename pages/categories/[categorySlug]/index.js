@@ -108,7 +108,7 @@ export async function getStaticProps(context) {
     //  });
   
     return {
-        fallback: false,
+        fallback: true,
         paths,
      };
   }
