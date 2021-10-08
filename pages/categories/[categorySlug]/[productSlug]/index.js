@@ -91,7 +91,7 @@ function Index({ product, header, footer, locale, array}) {
 
   // product[0].images.shift();
 
-  // test 
+  // test  test
   if (router.isFallback) {
     return <div>Loading...</div>
   }
