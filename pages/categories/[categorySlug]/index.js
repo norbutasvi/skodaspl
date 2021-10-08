@@ -108,8 +108,8 @@ export async function getStaticProps(context) {
     //  });
   
     return {
+        fallback: true,
         paths,
-        fallback: false,
      };
   }
 
@@ -117,6 +117,10 @@ export async function getStaticProps(context) {
 function Index({ header, footer, locale, category, productsData, array}) {
 
   const router = useRouter()
+
+  if (router.isFallback) {
+    return <div>Loading...</div>
+  }
 
     return (
       <div>
