@@ -114,7 +114,7 @@ ul {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  padding: 50px 0px;
+  padding: 10px 0px;
   align-items: center;
 }
 
@@ -404,6 +404,11 @@ footer .copyright a {
   width: 100%;
   text-align: center;
   background-color: rgba(164, 204, 69, 0.7);
+}
+
+.products-content h1 {
+  margin: 0;
+  margin-bottom: 10px;
 }
 
 .products-content .title {

@@ -9,6 +9,7 @@ import { getUrl } from '../../../services/getUrl';
 export async function getStaticProps(context) {
 
   const { locale, params } = context;
+  console.log(locale)
 
   let products;
   if (locale === undefined) {
@@ -123,6 +124,8 @@ function Index({ header, footer, locale, category, productsData, array}) {
     return <div>Loading...</div>
   }
 
+  const sortedProducts = category.products.sort((a,b) => { return new Date(b.updatedAt) - new Date(a.updatedAt)});
+
     return (
       <div>
     <Head>
@@ -143,13 +146,13 @@ function Index({ header, footer, locale, category, productsData, array}) {
           </div>
             <div className="wrapper">
               {
-                category.products.map(product => 
+                sortedProducts.map(product => 
                   <Link key={product._id} href={`/categories/${category.slug}/${product.slug}`} passHref>
                     <a>
                   <div className="item">
                     <div className="background" style={{ backgroundImage: `url('${product.images[0].url}')`}}>
                     </div>
-                    <h2 className="model">{product.title}</h2>
+                    <h2 className="model">{product.title} {product.updatedAt}</h2>
                     <p className="description" dangerouslySetInnerHTML={{ __html: product.short_description }} />
                   </div>
                   </a>
