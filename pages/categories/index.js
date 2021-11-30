@@ -12,9 +12,9 @@ export async function getStaticProps(context) {
 
   let categories;
   if (locale === undefined) {
-    categories = await fetch(`${getUrl()}/categories?_sort=updatedAt:ASC`);
+    categories = await fetch(`${getUrl()}/categories?_sort=updatedAt:DESC`);
   } else {
-    categories = await fetch(`${getUrl()}/categories?_locale=${locale}&_sort=updatedAt:ASC`);
+    categories = await fetch(`${getUrl()}/categories?_locale=${locale}&_sort=updatedAt:DESC`);
   }
   const categoriesData = await categories.json();
 

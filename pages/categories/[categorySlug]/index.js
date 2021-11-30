@@ -152,7 +152,7 @@ function Index({ header, footer, locale, category, productsData, array}) {
                   <div className="item">
                     <div className="background" style={{ backgroundImage: `url('${product.images[0].url}')`}}>
                     </div>
-                    <h2 className="model">{product.title} {product.updatedAt}</h2>
+                    <h2 className="model">{product.title}</h2>
                     <p className="description" dangerouslySetInnerHTML={{ __html: product.short_description }} />
                   </div>
                   </a>
