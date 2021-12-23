@@ -39,7 +39,7 @@ export default function Home({ page, header, footer }) {
   return (
     <div>
       <Head>
-        <title>SKODAS.LT</title>
+        <title>SKODAS.PL</title>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
         <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap" rel="stylesheet" />
