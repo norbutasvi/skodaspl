@@ -10,30 +10,16 @@ SwiperCore.use([Navigation, Pagination, Autoplay]);
 
 export async function getStaticProps(context) {
 
-  const { locale, defaultLocale } = context;
-
   let page;
-  if (locale === undefined) {
-    page = await fetch(`${getUrl()}/kontaktai`);
-  } else {
-    page = await fetch(`${getUrl()}/kontaktai?_locale=${locale}`);
-  }
+  page = await fetch(`${getUrl()}/kontaktai?_locale=pl-PL`);
   const pageData = await page.json();
 
   let header;
-  if (locale === undefined) {
-    header = await fetch(`${getUrl()}/header`);
-  } else {
-    header = await fetch(`${getUrl()}/header?_locale=${locale}`);
-  }
+  header = await fetch(`${getUrl()}/header?_locale=pl-PL`);
   const headerData = await header.json();
 
   let footer;
-  if (locale === undefined) {
-    footer = await fetch(`${getUrl()}/footer`);
-  } else {
-    footer = await fetch(`${getUrl()}/footer?_locale=${locale}`);
-  }
+  footer = await fetch(`${getUrl()}/footer?_locale=pl-PL`);
   const footerData = await footer.json();
 
   return {
@@ -41,13 +27,12 @@ export async function getStaticProps(context) {
       page: pageData,
       header: headerData,
       footer: footerData,
-      locale
     },
     revalidate: 10
   }
 }
 
-export default function Index({ page, header, footer, locale}) {
+export default function Index({ page, header, footer }) {
 
   const router = useRouter()
 
@@ -63,7 +48,7 @@ export default function Index({ page, header, footer, locale}) {
       </Head>
 
       <main>
-        <Header header={header} locale={locale} asPath={router.asPath} type="services"/>
+        <Header header={header} />
           <div className="services-content">
             <h1>{page.title}</h1>
             <div className="wrapper">
@@ -71,7 +56,7 @@ export default function Index({ page, header, footer, locale}) {
             </div>
           </div>
       </main>
-        <Footer footer={footer} locale={locale} />
+        <Footer footer={footer} />
     </div>
   )
 }

@@ -8,30 +8,16 @@ import { getUrl } from '../../services/getUrl';
 
 export async function getStaticProps(context) {
 
-  const { locale, defaultLocale } = context;
-
   let categories;
-  if (locale === undefined) {
-    categories = await fetch(`${getUrl()}/categories?_sort=updatedAt:DESC`);
-  } else {
-    categories = await fetch(`${getUrl()}/categories?_locale=${locale}&_sort=updatedAt:DESC`);
-  }
+  categories = await fetch(`${getUrl()}/categories?_locale=pl-PL&_sort=updatedAt:DESC`);
   const categoriesData = await categories.json();
 
   let header;
-  if (locale === undefined) {
-    header = await fetch(`${getUrl()}/header`);
-  } else {
-    header = await fetch(`${getUrl()}/header?_locale=${locale}`);
-  }
+  header = await fetch(`${getUrl()}/header?_locale=pl-PL`);
   const headerData = await header.json();
 
   let footer;
-  if (locale === undefined) {
-    footer = await fetch(`${getUrl()}/footer`);
-  } else {
-    footer = await fetch(`${getUrl()}/footer?_locale=${locale}`);
-  }
+  footer = await fetch(`${getUrl()}/footer?_locale=pl-PL`);
   const footerData = await footer.json();
 
   return {
@@ -39,13 +25,12 @@ export async function getStaticProps(context) {
       categories: categoriesData,
       header: headerData,
       footer: footerData,
-      locale
     },
     revalidate: 2
   }
 }
 
-function Index({ categories, header, footer, locale }) {
+function Index({ categories, header, footer }) {
   const router = useRouter()
 
     return (
@@ -59,12 +44,12 @@ function Index({ categories, header, footer, locale }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-      <Header header={header} locale={locale} asPath={router.asPath} type="categories"/>
+      <Header header={header} />
         <div className="categories-content">
             <div className="wrapper">
               {
                 categories.map(category => 
-                  <Link key={category._id} href={`/categories/${category.slug}`} locale={category.locale} passHref>
+                  <Link key={category._id} href={`/categories/${category.slug}`} passHref>
                     <a>
                   <div className="item" style={{ backgroundImage: `url('${category.image.url}')`}}>
                     <h1>{category.title}</h1>
@@ -90,7 +75,7 @@ function Index({ categories, header, footer, locale }) {
             </div>
         </div>
       </main>
-      <Footer footer={footer} locale={locale} />
+      <Footer footer={footer} />
         </div>
     )
 }

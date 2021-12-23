@@ -1,7 +1,7 @@
 import React from 'react'
 import Link from 'next/link';
 
-function Footer({ footer, locale }) {
+function Footer({ footer }) {
     return (
         <footer>
         <div className="wrapper">
@@ -13,7 +13,7 @@ function Footer({ footer, locale }) {
           </div>
           <div className="col">
             <ul>
-            <Link passHref href={`/${locale}`} locale={locale}>
+            <Link passHref href={`/`}>
             <a>
               <li>
                 <img className="arrow-icon" src="https://res.cloudinary.com/skodas-lt/image/upload/v1632993580/216279_location_arrow_icon_1_sji12i.svg" />
@@ -23,7 +23,7 @@ function Footer({ footer, locale }) {
               </li>
             </a>
             </Link>
-            <Link passHref href={`/${locale}/categories`} locale={locale}>
+            <Link passHref href={`/categories`}>
             <a>
               <li>
                 <img className="arrow-icon" src="https://res.cloudinary.com/skodas-lt/image/upload/v1632993580/216279_location_arrow_icon_1_sji12i.svg" />
@@ -33,7 +33,7 @@ function Footer({ footer, locale }) {
               </li>
             </a>
             </Link>
-            <Link passHref href={`/${locale}/services`} locale={locale}>
+            <Link passHref href={`/services`}>
             <a>
               <li>
                 <img className="arrow-icon" src="https://res.cloudinary.com/skodas-lt/image/upload/v1632993580/216279_location_arrow_icon_1_sji12i.svg" />
@@ -43,7 +43,7 @@ function Footer({ footer, locale }) {
               </li>
             </a>
             </Link>
-            <Link passHref href={`/${locale}/contact`} locale={locale}>
+            <Link passHref href={`/contact`}>
             <a>
               <li>
                 <img className="arrow-icon" src="https://res.cloudinary.com/skodas-lt/image/upload/v1632993580/216279_location_arrow_icon_1_sji12i.svg" />

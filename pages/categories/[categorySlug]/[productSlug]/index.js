@@ -9,42 +9,18 @@ import { getUrl } from '../../../../services/getUrl';
 
 export async function getStaticProps(context) {
 
-  const { locale, params } = context;
+  const { params } = context;
 
   let product;
-  if (locale === undefined) {
-    product = await fetch(`${getUrl()}/products?slug=${params.productSlug}`);
-  } else {
-    product = await fetch(`${getUrl()}/products?_locale=${locale}&slug=${params.productSlug}`);
-  }
+  product = await fetch(`${getUrl()}/products?_locale=pl-PL&slug=${params.productSlug}`);
   const productData = await product.json();
 
-  let array = [];
-  if (productData.length > 0) {
-    const otherLocales = productData[0].localizations;
-
-    otherLocales.forEach(async (locale) => {
-      const category = await fetch(`${getUrl()}/products/${locale._id}`);
-      let categoryData = await category.json();
-      array.push(categoryData);
-    })
-  }
-
-
   let header;
-  if (locale === undefined) {
-    header = await fetch(`${getUrl()}/header`);
-  } else {
-    header = await fetch(`${getUrl()}/header?_locale=${locale}`);
-  }
+  header = await fetch(`${getUrl()}/header?_locale=pl-PL`);
   const headerData = await header.json();
 
   let footer;
-  if (locale === undefined) {
-    footer = await fetch(`${getUrl()}/footer`);
-  } else {
-    footer = await fetch(`${getUrl()}/footer?_locale=${locale}`);
-  }
+  footer = await fetch(`${getUrl()}/footer?_locale=pl-PL`);
   const footerData = await footer.json();
 
   if (productData.length === 0) {
@@ -58,8 +34,6 @@ export async function getStaticProps(context) {
       product: productData,
       header: headerData,
       footer: footerData,
-      locale,
-      array
     },
     revalidate: 20
   }
@@ -68,7 +42,7 @@ export async function getStaticProps(context) {
   // This function gets called at build time
   export async function getStaticPaths({ locales }) {
     // Call an external API endpoint to get posts
-    const res = await fetch(`${getUrl()}/products?_locale=all`)
+    const res = await fetch(`${getUrl()}/products?_locale=pl-PL`)
     const posts = await res.json()
 
     const paths = posts.map((post) => ({
@@ -82,7 +56,7 @@ export async function getStaticProps(context) {
      };
   }
 
-function Index({ product, header, footer, locale, array}) {
+function Index({ product, header, footer }) {
 
   const router = useRouter()
 
@@ -107,7 +81,7 @@ function Index({ product, header, footer, locale, array}) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-      <Header header={header} locale={locale} asPath={router.asPath} type="product" otherLocales={array} />
+      <Header header={header} />
         <div className="product">
             <div className="texture">
               <div className="wrapper">
@@ -153,7 +127,7 @@ function Index({ product, header, footer, locale, array}) {
             </div>
         </div>
       </main>
-      <Footer footer={footer} locale={locale} />
+      <Footer footer={footer} />
         </div>
     )
 }
